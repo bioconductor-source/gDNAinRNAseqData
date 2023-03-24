@@ -1,0 +1,17 @@
+citHeader("To cite package 'LiYu22gDNAinRNAseqSubset' in publications use:")
+
+citEntry(entry="Article",
+  title = "Genes expressed at low levels raise false discovery rates in RNA samples contaminated with genomic DNA",
+  author = personList(as.person("Xiangnan Li"),
+                      as.person("Peipei Zhang"),
+                      as.person("Ying Yu")),
+  journal = "BMC Genomics",
+  volume = "23",
+  pages = "554",
+  year = "2022",
+  url = "https://doi.org/10.1186/s12864-022-08785-1",
+  doi = "10.1186/s12864-022-08785-1",
+  textVersion = paste("Li et al.",
+                      "Genes expressed at low levels raise false discovery rates in RNA samples contaminated with genomic DNA.",
+                      "BMC Bioinformatics, 23:554, 2022.")
+)
