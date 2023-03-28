@@ -15,6 +15,6 @@
     htmlTreeParse(htmlContent, handlers = h1)
     res <- h1$links()
     res <- res[!(res %in% c("?C=N;O=D", "?C=M;O=A", "?C=S;O=A", "?C=D;O=A",
-                            "/download/current/", "/experimenthub/"))]
+                            "/download/current/", "/experimenthub/gdnainrnaseqdata/"))]
     res
 }

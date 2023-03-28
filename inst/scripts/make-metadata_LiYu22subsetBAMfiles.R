@@ -3,16 +3,18 @@
   bamfiles <- .getSubDirs(baseUrl)
   bamfiles <- bamfiles[grep(".bam$", bamfiles)]
   gDNAlevel <- as.integer(gsub("s[0-9]+gDNA", "", gsub(".bam", "", bamfiles)))
+  accessions <- paste0("HRR5896", gsub("s", "", gsub("gDNA[0-9]+.bam", "", bamfiles)))
   ord <- order(gDNAlevel)
   bamfiles <- bamfiles[ord]
   gDNAlevel <- gDNAlevel[ord]
-  metadf <- data.frame(title=sprintf("RNA-seq data contaminated with gDNA (%d%%)", gDNAlevel),
+  accessions <- accessions[ord]
+  metadf <- data.frame(title=sprintf("RNA-seq data BAM file subset of %s contaminated with %d%% gDNA", accessions, gDNAlevel),
                        species="Homo sapiens",
                        taxonomyId=9606,
                        genome="hg38",
                        sourceUrl="https://ngdc.cncb.ac.cn/bioproject/browse/PRJCA007961",
                        sourceVersion="2022-08-05",
-                       description=sprintf("BAM file subset from the RNA-seq data by Li et al., BMC Genomics, 23:554, 2022, contaminated with gDNA (%d%%)", gDNAlevel),
+                       description=sprintf("BAM file subset of %s derived from the RNA-seq data by Li et al., BMC Genomics, 23:554, 2022, contaminated with %d%% gDNA", accessions, gDNAlevel),
                        rDataPath=paste(bamfiles, gsub(".bam", ".bai", bamfiles), sep=":"))
   metadf
 }
@@ -47,9 +49,7 @@ library(XML)
 library(RCurl)
 library(GenomeInfoDb)
 
-## source("../../R/utils.R") ## for .getSubDirs()
-source("utils.R") ## for .getSubDirs()
+source("../../R/utils.R") ## for .getSubDirs()
 
 metadata <- makeMetadata_LiYu22subsetBAMfiles()
-## write.csv(metadata, file="../extdata/metadata_LiYu22subsetBAMfiles.csv", row.names=FALSE)
-write.csv(metadata, file="metadata_LiYu22subsetBAMfiles.csv", row.names=FALSE)
+write.csv(metadata, file="../extdata/metadata_LiYu22subsetBAMfiles.csv", row.names=FALSE)
