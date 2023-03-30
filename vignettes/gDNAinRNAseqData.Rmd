@@ -8,9 +8,9 @@ author:
   email: robert.castelo@upf.edu
 package: "`r pkg_ver('gDNAinRNAseqData')`"
 abstract: >
-  The gDNAinRNAseqData package provides access to RNA-seq BAM files containing
-  different levels of genomic DNA (gDNA) contamination through, as
-  ExperimentHub resources. This vignette illustrates how to download them.
+  The gDNAinRNAseqData package provides access through the ExperimentHub,
+  to RNA-seq BAM files containing different levels of genomic DNA (gDNA)
+  contamination. This vignette illustrates how to download them.
 vignette: >
   %\VignetteIndexEntry{RNA-seq data with different levels of gDNA contamination}
   %\VignetteEngine{knitr::rmarkdown}
@@ -43,12 +43,19 @@ Here we show how to download a subset of the RNA-seq data published in:
 > discovery rates in RNA samples contaminated with genomic DNA. _BMC Genomics_,
 > 23:554, 2022. https://doi.org/10.1186/s12864-022-08785-1
 
-This subset of the data corresponds to BAM files containing about 100,000
-alignments sampled uniformly at random for the RNA-seq experiments produced
+The subset of the data available through this package are BAM files containing
+about 100,000 alignments, sampled uniformly at random from complete BAM files.
+These complete BAM files were obtained by aligning the RNA-seq reads sequenced
 from total RNA libraries mixed with different concentrations of gDNA,
 concretely 0% (no contamination), 1% and 10%; see Fig. 2 from Li et al. (2022).
-To download these BAM files, and the corresponding index (.bai) files, we load
-this package and call the function `LiYu22subsetBAMfiles()`:
+The original RNA-seq data is publicly available at
+https://ngdc.cncb.ac.cn/bioproject/browse/PRJCA007961 and you can find the
+pipeline to generate this subset of the data in the file
+`gDNAinRNAseqData/inst/scripts/make-data_LiYu22subsetBAMfiles.R` stored in this
+package.
+
+To download these subsetted BAM files, and the corresponding index (.bai) files,
+we load this package and call the function `LiYu22subsetBAMfiles()`:
 
 ```{r, message=FALSE}
 library(gDNAinRNAseqData)
@@ -58,7 +65,7 @@ bamfiles
 ```
 
 The previous function call can take a `path` argument to specify the path in
-the filesystem where we would like to store the downloaded BAM file, which
+the filesystem where we would like to store the downloaded BAM files, which
 by default is a temporary path from the current R session; consult the help
 page of `LiYu22subsetBAMfiles()` for full details.
 
@@ -66,7 +73,8 @@ We can also retrieve the gDNA concentrations associated to each BAM file with
 the following function call:
 
 ```{r}
-LiYu22phenoData(bamfiles)
+pdat <- LiYu22phenoData(bamfiles)
+pdat
 ```
 
 # Session information

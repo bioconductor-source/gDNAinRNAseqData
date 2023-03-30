@@ -67,10 +67,7 @@ LiYu22subsetBAMfiles <- function(path=tempdir(), offline=FALSE) {
     }
 
     preparerclass <- rdataclass <- NULL ## to avoid NOTE at R CMD check
-    ehres <- subset(eh, preparerclass=="NxtIRFdata" & rdataclass=="BamFile")
-    ## the previous line should be replaced by the following one, once the
-    ## resources are available at the ExperimentHub
-    ## ehres <- subset(eh, preparerclass=="gDNAinRNAseqData" & rdataclass=="BamFile")
+    ehres <- subset(eh, preparerclass=="gDNAinRNAseqData" & rdataclass=="BamFile")
     bamfiles <- basename(gsub(", .+$", "", ehres$rdatapath))
     baifiles <- gsub(".bam", ".bai", bamfiles)
     for (i in seq_along(names(ehres))) {
