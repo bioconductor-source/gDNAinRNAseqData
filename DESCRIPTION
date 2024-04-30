@@ -1,6 +1,6 @@
 Package: gDNAinRNAseqData
 Title: RNA-seq data with different levels of gDNA contamination
-Version: 1.3.0
+Version: 1.4.0
 Authors@R: person("Robert", "Castelo", email = "robert.castelo@upf.edu", role = c("aut", "cre"), comment=c(ORCID="0000-0003-2229-4508"))
 Description: 
     Provides access to BAM files generated from RNA-seq data produced with different levels of gDNA contamination. It currently allows one to download a subset of the data published by Li et al., BMC Genomics, 23:554, 2022. This subset of data is formed by BAM files with about 100,000 alignments with three different levels of gDNA contamination.
